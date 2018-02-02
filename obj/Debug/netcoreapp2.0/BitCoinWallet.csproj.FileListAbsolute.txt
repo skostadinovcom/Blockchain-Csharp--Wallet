@@ -1,0 +1,11 @@
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/bin/Debug/netcoreapp2.0/BitCoinWallet.deps.json
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/bin/Debug/netcoreapp2.0/BitCoinWallet.runtimeconfig.json
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/bin/Debug/netcoreapp2.0/BitCoinWallet.runtimeconfig.dev.json
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/bin/Debug/netcoreapp2.0/BitCoinWallet.dll
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/bin/Debug/netcoreapp2.0/BitCoinWallet.pdb
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/obj/Debug/netcoreapp2.0/BitCoinWallet.csproj.CoreCompileInputs.cache
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/obj/Debug/netcoreapp2.0/BitCoinWallet.AssemblyInfoInputs.cache
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/obj/Debug/netcoreapp2.0/BitCoinWallet.AssemblyInfo.cs
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/obj/Debug/netcoreapp2.0/BitCoinWallet.dll
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/obj/Debug/netcoreapp2.0/BitCoinWallet.pdb
+/Users/stoyankostadinov/Projects/BTCWallet/BitCoinWallet/obj/Debug/netcoreapp2.0/BitCoinWallet.csprojResolveAssemblyReference.cache
