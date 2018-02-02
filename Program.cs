@@ -193,7 +193,7 @@ namespace BitCoinWallet
             Console.WriteLine("Enter password: ");
             string password = Console.ReadLine();
 
-            Console.WriteLine("Enter wallet address: ");
+            Console.WriteLine("Enter wallet address: "); 
             string wallet = Console.ReadLine();
 
             try
