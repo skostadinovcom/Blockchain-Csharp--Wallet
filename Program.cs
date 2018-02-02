@@ -34,22 +34,22 @@ namespace BitCoinWallet
 
             if( operation == "balance" )
             {
-                
+                //Balance
             }
 
             if( operation == "history" )
             {
-                
+                //History
             }
 
             if( operation == "receive" )
             {
-                
+              //  Receive
             }
 
             if( operation == "send" )
             {
-                
+                //Send
             }
         }
 
