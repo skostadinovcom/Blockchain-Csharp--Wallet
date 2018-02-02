@@ -25,7 +25,6 @@ namespace BitCoinWallet
                 goto Begin;
             }
 
-
             if( operation == "recover" )
             {
                 RecoverWallet();
@@ -34,12 +33,14 @@ namespace BitCoinWallet
 
             if( operation == "balance" )
             {
-                //Balance
+                WalletBalance();
+                goto Begin;
             }
 
             if( operation == "history" )
             {
-                //History
+                WalletHistory();
+                goto Begin;
             }
 
             if( operation == "receive" )
@@ -140,6 +141,100 @@ namespace BitCoinWallet
                     "yyyy-MM-dd", CultureInfo.InvariantCulture));
 
             Console.WriteLine("Wallet successfully recovered");
+        }
+
+        public static void WalletBalance()
+        {
+            string walletsPath = @"Wallets/";
+
+            Console.WriteLine("Enter wallet's name: ");
+            string walletName = Console.ReadLine();
+
+            Console.WriteLine("Enter password: ");
+            string password = Console.ReadLine();
+
+            Console.WriteLine("Enter wallet address: ");
+            string wallet = Console.ReadLine();
+
+            try
+            {
+                Safe loadedSafe = Safe.Load(password, walletsPath + walletName + ".json");
+            }
+            catch
+            {
+                Console.WriteLine("Wrong wallet or password!");
+                return;
+            }
+
+            QBitNinjaClient client = new QBitNinjaClient(Network.TestNet);
+            decimal totalBalance = 0;
+            var balance = client.GetBalance(BitcoinAddress.Create(wallet), true).Result;
+
+            foreach (var entry in balance.Operations)
+            {
+                foreach (var coin in entry.ReceivedCoins)
+                {
+                    Money amount = (Money)coin.Amount;
+                    decimal currentAmount = amount.ToDecimal(MoneyUnit.BTC);
+                    totalBalance += currentAmount;
+                }
+            }
+
+            Console.WriteLine($"Balance of wallet: {totalBalance}");
+        }
+
+        public static void WalletHistory()
+        {
+            string walletsPath = @"Wallets/";
+
+            Console.WriteLine("Enter wallet's name: ");
+            string walletName = Console.ReadLine();
+
+            Console.WriteLine("Enter password: ");
+            string password = Console.ReadLine();
+
+            Console.WriteLine("Enter wallet address: ");
+            string wallet = Console.ReadLine();
+
+            try
+            {
+                Safe loadedSafe = Safe.Load(password, walletsPath + walletName + ".json");
+            }
+            catch
+            {
+                Console.WriteLine("Wrong wallet or password!");
+                return;
+            }
+
+            QBitNinjaClient client = new QBitNinjaClient(Network.TestNet);
+            var coinsReceived = client.GetBalance(BitcoinAddress.Create(wallet), true).Result;
+            string header = "-----COINS RECEIVED-----";
+            Console.WriteLine(header);
+            foreach (var entry in coinsReceived.Operations)
+            {
+                foreach (var coin in entry.ReceivedCoins)
+                {
+                    Money amount = (Money)coin.Amount;
+                    WriteLine($"Transaction ID: {coin.Outpoint}; Received coins: {amount.ToDecimal(MoneyUnit.BTC)}");
+                }
+            }
+
+            Console.WriteLine(new string('-', header.Length));
+            var coinsSpent = client.GetBalance(BitcoinAddress.Create(wallet), false).Result;
+            string footer = "-----COINS SPENT-----";
+
+            Console.WriteLine(footer);
+
+            foreach (var entry in coinsSpent.Operations)
+            {
+                foreach (var coin in entry.SpentCoins)
+                {
+                    Money amount = (Money)coin.Amount;
+                    Console.WriteLine($"Transaction ID: {coin.Outpoint}; Spent coins: {amount.ToDecimal(MoneyUnit.BTC)}");
+                }
+            }
+
+            Console.WriteLine(new string('-', footer.Length));
         }
     }
 }
