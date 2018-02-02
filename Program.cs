@@ -45,7 +45,7 @@ namespace BitCoinWallet
 
             if( operation == "receive" )
             {
-              //  Receive
+                //Receive
             }
 
             if( operation == "send" )
@@ -215,7 +215,7 @@ namespace BitCoinWallet
                 foreach (var coin in entry.ReceivedCoins)
                 {
                     Money amount = (Money)coin.Amount;
-                    WriteLine($"Transaction ID: {coin.Outpoint}; Received coins: {amount.ToDecimal(MoneyUnit.BTC)}");
+                    Console.WriteLine($"Transaction ID: {coin.Outpoint}; Received coins: {amount.ToDecimal(MoneyUnit.BTC)}");
                 }
             }
 
